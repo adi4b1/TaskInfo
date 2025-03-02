@@ -3,10 +3,21 @@ const mongoose = require("mongoose");
 const dotEnv = require("dotenv");
 const bodyParser = require("body-parser");
 const taskRoute = require("./Routes/taskRoute");
-
+const cors = require("cors");
 dotEnv.config();
 
 const app = express();
+app.use((req, res, next) => {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://task-backend-zeta-puce.vercel.app/"
+  );
+  res.header("Access-Control-Allow-Origin", "http://localhost:5173"); // ✅ Allow frontend
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
+app.options("*", cors()); // ✅ Handle preflight requests
 
 app.use(bodyParser.json());
 
@@ -15,7 +26,7 @@ mongoose
   .then(() => {
     console.log("connection success");
   })
-  .catch((e) => console.log("getting error"));
+  .catch((e) => console.log("getting error", e));
 
 const PORT = 4000 || process.env.PORT;
 
