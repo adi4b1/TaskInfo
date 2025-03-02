@@ -17,7 +17,7 @@ mongoose
   })
   .catch((e) => console.log("getting error"));
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 4000;
 
 //middleware to connect routes
 
