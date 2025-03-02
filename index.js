@@ -8,7 +8,7 @@ dotEnv.config();
 
 const app = express();
 
-app.options("*", cors()); // ✅ Handle preflight requests
+// app.options("*", cors()); // ✅ Handle preflight requests
 
 app.use(bodyParser.json());
 
