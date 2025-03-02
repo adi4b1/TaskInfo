@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const dotEnv = require("dotenv");
 const bodyParser = require("body-parser");
 const taskRoute = require("./Routes/taskRoute");
-const cors = require("cors");
+
 dotEnv.config();
 
 const app = express();
@@ -17,7 +17,7 @@ mongoose
   .then(() => {
     console.log("connection success");
   })
-  .catch((e) => console.log("getting error", e));
+  .catch((e) => console.log("getting error"));
 
 const PORT = process.env.PORT || 4000;
 
