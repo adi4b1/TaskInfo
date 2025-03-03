@@ -5,4 +5,5 @@ const router=express.Router()
 
 router.post('/add-task',taskRoute.addTask)
 router.get('/alltasks',taskRoute.allTasks)
+router.post('/update-task/:id')
 module.exports=router

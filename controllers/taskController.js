@@ -29,4 +29,24 @@ const allTasks = async (req, res) => {
     res.status(500).json({ error: "servere error" });
   }
 };
-module.exports = { addTask, allTasks };
+
+const updateTask=async(req,res)=>{
+  try {
+    const id=req.params.id
+    const {isComplete}=req.body
+
+    const task=await Task.findByIdAndUpdate(id,{isComplete},{new:true})
+
+    if(!task){
+      return res.status(404).json({error:'task not found'})
+    }
+
+    res.status(200).json({success:'task updated successfully'})
+    
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({message:'server error'})
+    
+  }
+}
+module.exports = { addTask, allTasks,updateTask };
