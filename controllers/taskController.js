@@ -41,11 +41,11 @@ const updateTask=async(req,res)=>{
       return res.status(404).json({error:'task not found'})
     }
 
-    res.status(200).json({success:'task updated successfully'})
+    res.status(200).json({success:'task updated successfully',task})
     
   } catch (error) {
     console.log(error);
-    res.status(500).json({message:'server error'})
+    res.status(500).json({message:'server error',error})
     
   }
 }
