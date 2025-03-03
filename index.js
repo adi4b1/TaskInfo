@@ -3,10 +3,15 @@ const mongoose = require("mongoose");
 const dotEnv = require("dotenv");
 const bodyParser = require("body-parser");
 const taskRoute = require("./Routes/taskRoute");
-
+const cors=require('cors')
 dotEnv.config();
 
 const app = express();
+app.use(cors())
+app.use((req, res, next) => {
+  console.log("CORS Middleware - Origin:", req.headers.origin);
+  next();
+});
 
 app.use(bodyParser.json());
 
