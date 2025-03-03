@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 const dotEnv = require("dotenv");
 const bodyParser = require("body-parser");
 const taskRoute = require("./Routes/taskRoute");
-const cors=require('cors')
+const cors = require("cors");
 dotEnv.config();
 
 const app = express();
-app.use(cors())
+app.use(cors());
 
 app.use(bodyParser.json());
 
@@ -23,7 +23,7 @@ const PORT = process.env.PORT || 4000;
 //middleware to connect routes
 
 app.use("/task", taskRoute);
-app.use("/", (req, res) => {
+app.use("/test", (req, res) => {
   res.send("Welcome to task monitor");
 });
 app.listen(PORT, (req, res) => {
