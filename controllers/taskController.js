@@ -32,7 +32,7 @@ const allTasks = async (req, res) => {
 
 const updateTask=async(req,res)=>{
   try {
-    const id=req.params.id
+    const {id}=req.params
     const {isComplete}=req.body
 
     const task=await Task.findByIdAndUpdate(id,{isComplete},{new:true})
