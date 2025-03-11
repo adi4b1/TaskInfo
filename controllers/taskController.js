@@ -49,4 +49,22 @@ const updateTask=async(req,res)=>{
     
   }
 }
-module.exports = { addTask, allTasks,updateTask };
+
+const deleteTask=async(req,res)=>{
+  try {
+    const {id}=req.params
+    const taskId=Number(id)
+    console.log('from backend',typeof taskId);
+    
+    const task=await Task.findByIdAndDelete(taskId)
+    if(!task){
+      return res.status(404).json({message:"task not found"})
+    }
+    res.status(200).json({success:"task deleted successfully"})
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({error:"server error",error})
+    
+  }
+}
+module.exports = { addTask, allTasks,updateTask,deleteTask };
