@@ -53,10 +53,10 @@ const updateTask=async(req,res)=>{
 const deleteTask=async(req,res)=>{
   try {
     const {id}=req.params
-    const taskId=Number(id)
-    console.log('from backend',typeof taskId);
+    // const taskId=Number(id)
+    console.log('from backend',typeof id);
     
-    const task=await Task.findByIdAndDelete(taskId)
+    const task=await Task.findByIdAndDelete(id)
     if(!task){
       return res.status(404).json({message:"task not found"})
     }
