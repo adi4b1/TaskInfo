@@ -26,7 +26,13 @@ const addTaskSchema=new mongoose.Schema({
     isComplete:{
         type:Boolean,
         default:false,
-    }
+    },
+    user:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"User"
+        }
+    ]
 })
 
 const Task=mongoose.model("Task",addTaskSchema)

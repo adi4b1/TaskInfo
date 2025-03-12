@@ -1,9 +1,14 @@
 const Task = require("../model/Task");
-
+const User=require("../model/User")
 const addTask = async (req, res) => {
   const { taskname, priority, finishedDate, deadline, isComplete } = req.body;
   // const {created}=date.now
   try {
+    const user=await User.findById(req.userId)
+    if(!user){
+      return res.status(500).json({error:'user not found'})
+    }
+
     const task = new Task({
       taskname,
       created: new Date(),
@@ -11,8 +16,11 @@ const addTask = async (req, res) => {
       finishedDate,
       deadline,
       isComplete,
+      user:user._id
     });
-    await task.save();
+    const savedTask=await task.save();
+    user.task.push(savedTask)
+    await user.save()
     res.status(200).json({ success: "task created success" });
   } catch (error) {
     console.log(error);
