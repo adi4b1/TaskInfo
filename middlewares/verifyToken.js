@@ -11,7 +11,7 @@ const secretKey=process.env.SECRET_KEY
 
 const verifyToken=async(req,res,next)=>{
     const token=req.headers.token
-    console.log('from backend',token);
+    // console.log('from backend',token);
     
     if(!token){
         return res.status(401).json({error:'token is required'})
