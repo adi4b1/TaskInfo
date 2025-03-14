@@ -1,6 +1,9 @@
 const Task = require("../model/Task");
 const User=require("../model/User")
+
+
 const addTask = async (req, res) => {
+  const token=req.headers.token
   const { taskname, priority, finishedDate, deadline, isComplete } = req.body;
   // const {created}=date.now
   try {
@@ -21,7 +24,7 @@ const addTask = async (req, res) => {
     const savedTask=await task.save();
     user.task.push(savedTask)
     await user.save()
-    res.status(200).json({ success: "task created success" });
+    res.status(200).json({ success: "task created success" ,token});
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "servere error" });
