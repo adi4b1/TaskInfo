@@ -4,6 +4,7 @@ const User=require("../model/User")
 
 const addTask = async (req, res) => {
   const token=req.headers.token
+  console.log('from versel',token)
   const { taskname, priority, finishedDate, deadline, isComplete } = req.body;
   // const {created}=date.now
   try {
