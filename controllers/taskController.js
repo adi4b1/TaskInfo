@@ -33,9 +33,10 @@ const addTask = async (req, res) => {
 };
 
 const allTasks = async (req, res) => {
+  const token=req.headers.token
   try {
     const tasks = await Task.find();
-    res.status(200).json(tasks);
+    res.status(200).json({success:"fetch task succuss",tasks,token});
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "servere error" });
@@ -43,6 +44,7 @@ const allTasks = async (req, res) => {
 };
 
 const updateTask=async(req,res)=>{
+  const token=req.headers.token
   try {
     const {id}=req.params
     const {isComplete}=req.body
@@ -53,7 +55,7 @@ const updateTask=async(req,res)=>{
       return res.status(404).json({error:'task not found'})
     }
 
-    res.status(200).json({success:'task updated successfully',task})
+    res.status(200).json({success:'task updated successfully',task,token})
     
   } catch (error) {
     console.log(error);
@@ -63,6 +65,7 @@ const updateTask=async(req,res)=>{
 }
 
 const deleteTask=async(req,res)=>{
+  const token=req.headers.token
   try {
     const {id}=req.params
     // const taskId=Number(id)
@@ -72,7 +75,7 @@ const deleteTask=async(req,res)=>{
     if(!task){
       return res.status(404).json({message:"task not found"})
     }
-    res.status(200).json({success:"task deleted successfully"})
+    res.status(200).json({success:"task deleted successfully",token})
   } catch (error) {
     console.log(error);
     res.status(500).json({error:"server error",error})
