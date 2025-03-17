@@ -10,7 +10,7 @@ dotEnv.config();
 
 const app = express();
 // const cors = require("cors");
-app.use(cors({ origin: "https://task-frontend-orcin.vercel.app" }));
+app.use(cors({ origin: "*" }));
 
 app.use(bodyParser.json());
 
