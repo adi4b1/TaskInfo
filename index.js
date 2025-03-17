@@ -9,7 +9,8 @@ const cors = require("cors");
 dotEnv.config();
 
 const app = express();
-app.use(cors());
+// const cors = require("cors");
+app.use(cors({ origin: "https://task-frontend-orcin.vercel.app" }));
 
 app.use(bodyParser.json());
 
