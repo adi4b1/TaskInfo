@@ -4,7 +4,7 @@ const verifyToken=require('../middlewares/verifyToken')
 const router=express.Router()
 
 router.post('/add-task',verifyToken,taskRoute.addTask)
-router.get('/alltasks',taskRoute.allTasks)
-router.delete('/deletetask/:id',taskRoute.deleteTask)
-router.patch('/update-task/:id',taskRoute.updateTask)
+router.get('/alltasks',verifyToken,taskRoute.allTasks)
+router.delete('/deletetask/:id',verifyToken,taskRoute.deleteTask)
+router.patch('/update-task/:id',verifyToken,taskRoute.updateTask)
 module.exports=router
