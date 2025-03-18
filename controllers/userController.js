@@ -39,6 +39,8 @@ const userLogin=async(req,res)=>{
         const{email,password}=req.body
 
         const user=await User.findOne({email})
+        console.log('find from login',user._id,user);
+        
         const userId=user._id
         const username=user.username
         
@@ -46,7 +48,7 @@ const userLogin=async(req,res)=>{
             res.status(401).json({error:"invalid username or password"})
         }
 
-        const token=jwt.sign({userId:user._id},secretKey,{expiresIn:'12hr'})
+        const token=jwt.sign({userId:user._id},secretKey,{expiresIn:'4hr'})
         console.log(token);
 
         res.status(200).json({message:'login success',token,userId,username})
