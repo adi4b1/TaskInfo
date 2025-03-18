@@ -33,10 +33,10 @@ const addTask = async (req, res) => {
 };
 
 const allTasks = async (req, res) => {
-  // const token=req.headers.token
+  const token=req.headers.token
   try {
     const tasks = await Task.find();
-    res.status(200).json(tasks);
+    res.status(200).json(tasks,token);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "servere error" });

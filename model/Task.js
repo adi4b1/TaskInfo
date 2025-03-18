@@ -17,7 +17,7 @@ const addTaskSchema=new mongoose.Schema({
     },
     finishedDate:{
         type:String,
-        required:true,
+        
     },
     deadline:{
         type:String,
