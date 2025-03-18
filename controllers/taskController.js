@@ -44,7 +44,7 @@ const allTasks = async (req, res) => {
 };
 
 const updateTask=async(req,res)=>{
-  const token=req.headers.token
+  // const token=req.headers.token
   try {
     const {id}=req.params
     const {isComplete}=req.body
@@ -55,7 +55,7 @@ const updateTask=async(req,res)=>{
       return res.status(404).json({error:'task not found'})
     }
 
-    res.status(200).json({success:'task updated successfully',task,token})
+    res.status(200).json({success:'task updated successfully',task})
     
   } catch (error) {
     console.log(error);
