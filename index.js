@@ -11,13 +11,14 @@ const cors = require("cors");
 dotEnv.config();
 
 const app = express();
+app.use(express.json());
 // const cors = require("cors");
 app.use(cors({ origin: "*" }));
 
 app.use(bodyParser.json());
-
+const MONGO_URI=process.env.MONGO_URI
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(MONGO_URI)
   .then(() => {
     console.log("connection success");
   })

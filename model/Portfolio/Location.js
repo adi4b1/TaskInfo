@@ -2,16 +2,16 @@ const mongoose=require('mongoose')
 
 
 const LocationSchema=new mongoose.Schema({
-    locationname:{
+    location:{
         type:String,
         required:true
     },
-    created:{
-        type:String,
-        default:Date.now
-    }
+    createdAt: {
+        type: Date,
+        default: Date.now,
+      },
 })
 
-
-module.exports=mongoose.model('Location',LocationSchema)
+const LocationSc=mongoose.model('Location',LocationSchema)
+module.exports=LocationSc
 

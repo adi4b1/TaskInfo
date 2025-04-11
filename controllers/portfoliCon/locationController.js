@@ -2,13 +2,11 @@ const Location=require('../../model/Portfolio/Location')
 
 
 const AddLocation=async(req,res)=>{
-    const{locationname}=req.body
-
+    const{location}=req.body
+    console.log("Received location in backend:", location);
     try {
-        const location=new Location({
-            locationname,
-        })
-        location.save()
+        const saved = new Location({ location });
+        await saved.save()
 
         return res.status(201).json({success:"location created"})
     } catch (error) {
