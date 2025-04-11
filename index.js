@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const taskRoute = require("./Routes/taskRoute");
 
 const userRoute = require("./Routes/userRoutes");
+
+const locRoutes=require('./Routes/LocRoutes/locationRoutes')
 const cors = require("cors");
 dotEnv.config();
 
@@ -19,7 +21,7 @@ mongoose
   .then(() => {
     console.log("connection success");
   })
-  .catch((e) => console.log("getting error"));
+  .catch((error) => console.log("getting error",error));
 
 const PORT = process.env.PORT || 4000;
 
@@ -27,6 +29,7 @@ const PORT = process.env.PORT || 4000;
 
 app.use("/task", taskRoute);
 app.use("/user", userRoute);
+app.use('/location',locRoutes)
 app.use("/test", (req, res) => {
   res.send("Welcome to task monitor");
 });

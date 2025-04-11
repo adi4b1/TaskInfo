@@ -10,7 +10,10 @@ const secretKey=process.env.SECRET_KEY
 
 const userRegistration=async(req,res)=>{
     const{username,email,password}=req.body
-
+    console.log(username,password,email)
+    if(!username || !email || !password){
+        return res.status(400).json({error:"All fields are required"})
+    }
     try {
         const user=await User.findOne({email})
         if(user){
@@ -24,11 +27,11 @@ const userRegistration=async(req,res)=>{
             password:hashedpassword
         })
         await newUser.save()
-        res.status(200).json("user created success")
+        res.status(201).json("user created success")
 
         console.log('user registered.......');
     } catch (error) {
-        res.status(500).json("server error")
+        res.status(500).json({error:"server error"})
         console.log(error);
     }
 }
@@ -65,6 +68,9 @@ const userLogin=async(req,res)=>{
         
     }
 }
+
+
+
 
 
 module.exports={userRegistration,userLogin}
